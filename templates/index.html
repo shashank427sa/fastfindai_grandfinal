@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow">AI-POWERED LOST & FOUND</div>
+  <h1>Lost something?<br><span>Let's find it.</span></h1>
+  <p>Report a lost item or securely register something you've found. Fast Find AI compares reports and helps connect the right people.</p>
+  <div class="actions">
+    {% if current_user.is_authenticated %}
+      <a class="button" href="{{ url_for('report', kind='lost') }}">I lost something</a>
+      <a class="button secondary" href="{{ url_for('report', kind='found') }}">I found something</a>
+    {% else %}
+      <a class="button" href="{{ url_for('register') }}">Get started</a>
+      <a class="button secondary" href="{{ url_for('login') }}">Log in</a>
+    {% endif %}
+  </div>
+  <div class="privacy-note">🔒 Found-item reports are private. Only authorized report owners can see potential matches.</div>
+</section>
+<section class="features">
+  <article><div class="feature-icon">📷</div><h3>Photo + detail matching</h3><p>Compare item descriptions and photo similarity to surface possible matches.</p></article>
+  <article><div class="feature-icon">🛡️</div><h3>Private by design</h3><p>Found reports are not displayed in a public browse page.</p></article>
+  <article><div class="feature-icon">🤝</div><h3>Claim verification</h3><p>Claimants provide details; the finder reviews before a handover.</p></article>
+</section>
+{% endblock %}
